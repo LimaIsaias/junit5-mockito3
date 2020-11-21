@@ -1,9 +1,9 @@
 package br.com.limaisaias;
 
 
+import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class primeiroTest {
 
@@ -15,7 +15,6 @@ public class primeiroTest {
         //execução
         int result = a + b;
         //verificações
-        Assert.assertEquals(15, result);
         Assertions.assertThat(result).isBetween(14, 16);
     }
 
