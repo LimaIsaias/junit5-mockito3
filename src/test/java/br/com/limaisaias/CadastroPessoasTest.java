@@ -1,5 +1,7 @@
 package br.com.limaisaias;
 
+import br.com.limaisaias.exception.CadastroVazioException;
+import br.com.limaisaias.exception.PessoaSemNomeNotException;
 import br.com.limaisaias.model.CadastroPessoas;
 import br.com.limaisaias.model.Pessoa;
 import org.assertj.core.api.Assertions;
@@ -41,20 +43,25 @@ public class CadastroPessoasTest {
     }
 
     @Test
+    @DisplayName("não deve remover uma pessoa inexistente")
     public void deveRetornarErroAoRemoverPessoaInexistente() {
 
         CadastroPessoas cadastro = new CadastroPessoas();
-        cadastro.remover(new Pessoa());
+
+
+        org.junit.jupiter.api.Assertions.assertThrows(CadastroVazioException.class, () -> cadastro.remover(new Pessoa()));
 
     }
 
     @Test
+    @DisplayName("não deve cadastrar uma pessoa com nome vazio")
     public void naoDeveCadastrarPessoaComNomeVazio() {
         CadastroPessoas cadastroPessoas = new CadastroPessoas();
 
         Pessoa pessoa = new Pessoa();
+        org.junit.jupiter.api.Assertions.assertThrows(PessoaSemNomeNotException.class, () -> cadastroPessoas.adicionar(pessoa));
 
-        cadastroPessoas.adicionar(pessoa);
+
     }
 
 }
